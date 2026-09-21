@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: noteweaver-postgres
+    environment:
+      POSTGRES_USER: noteweaver
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: noteweaver
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  neo4j:
+    image: neo4j:5
+    container_name: noteweaver-neo4j
+    environment:
+      NEO4J_AUTH: neo4j/devpassword
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - neo4j_data:/data
+
+volumes:
+  postgres_data:
+  neo4j_data:
